@@ -1,12 +1,8 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div>
-    <Alert />
-
-    <Profile />
-
-    Index Page
+  <div class="bg-green-500 rounded px-2 py-1 text-white mb-2">
+    Component: Alert
   </div>
 </template>
 

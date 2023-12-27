@@ -2,11 +2,10 @@
 
 <template>
   <div>
-    <Alert />
+    Component: Profile
 
-    <Profile />
-
-    Index Page
+    <ProfileHeader />
+    <ProfileHeaderAvatar />
   </div>
 </template>
 
