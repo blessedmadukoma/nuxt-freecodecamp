@@ -1,32 +1,12 @@
 <script lang="ts" setup>
-  import type BellVue from "~/components/icons/Bell.vue";
+  const { sayHello } = useUtils();
+
+  sayHello("blessed");
 </script>
 
 <template>
-  <div>
-    <Alert />
-
-    <Profile />
-
-    Index Page
-
-    <!-- ASSETS folder -->
-    <!-- assets: processing, not publicly available to the internet (to avoid sharing) -->
-    <!-- using ~, the "@" configuration in nuxt.config.ts -->
-    <!-- <img src="~/assets/img/postgres-scaling.jpeg" alt="Scaling Postgres" /> -->
-
-    <!-- !!!OR!!! -->
-
-    <!-- using "@", the "assets" configuration in nuxt.config.ts -->
-    <!-- <img src="@/assets/img/postgres-scaling.jpeg" alt="Scaling Postgres" /> -->
-
-    <!-- PUBLIC folder -->
-    <!-- public: not processing, server for static assets (no compression, no resizing etc), publicly available to the internet (to share) -->
-
-    <img src="/scaling-pg.jpeg" alt="Scaling Postgres" />
-
-    <!-- Using SVGs -->
-    <IconsBell class="text-red-500" />
+  <div class="container py-3 mx-auto Main">
+    <h1 class="text-teal-500">Index Page</h1>
   </div>
 </template>
 
