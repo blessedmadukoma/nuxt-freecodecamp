@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+  definePageMeta({
+    middleware: "profile",
+  });
+
   const { sayHello } = useUtils();
 
   sayHello("blessed");
