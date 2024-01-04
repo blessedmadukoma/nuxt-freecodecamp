@@ -16,6 +16,11 @@
   const store = useCounterStore();
 
   console.log(store);
+
+  // Server
+  const response = await $fetch("/api/hello");
+
+  console.log(response);
 </script>
 
 <template>
