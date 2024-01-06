@@ -1,4 +1,24 @@
 <script lang="ts" setup>
+  // useHead({
+  //   title: "Index page",
+  //   meta: [
+  //     {
+  //       name: "description",
+  //       content: "Index page",
+  //     },
+  //   ],
+  //   bodyAttrs: {
+  //     class: "test",
+  //   },
+  //   script: [
+  //     {
+  //       children: "console.log(`Hello world from index page`)",
+  //     },
+  //   ],
+  // });
+
+  const dynamicTitle = "title";
+
   definePageMeta({
     middleware: "profile",
   });
@@ -25,25 +45,11 @@
 
 <template>
   <div class="container py-3 mx-auto Main">
+    <Head>
+      <Title>My title</Title>
+      <Meta name="description" :content="'This my dynamic ' + dynamicTitle" />
+    </Head>
     <h1 class="text-teal-500">Index Page</h1>
-  </div>
-
-  <!-- State Management -->
-  <div>
-    <!-- 1. Using useState -->
-    <div>
-      <div>
-        Counter: {{ counter }}
-        <button @click="counter++">+</button>
-        <button @click="counter--">-</button>
-      </div>
-
-      <Counter />
-    </div>
-
-    <div>
-      <!-- 2. Using Pinia -->
-    </div>
   </div>
 </template>
 
