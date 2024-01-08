@@ -1,49 +1,28 @@
 <script lang="ts" setup>
-  definePageMeta({
-    middleware: "profile",
-  });
+  // useFetch
+  // const { data: products } = await useFetch("/api/products");
 
-  const { sayHello } = useUtils();
+  // useLazyFetch
+  // const { data: products, pending } = await useLazyFetch("/api/products");
 
-  sayHello("blessed");
+  // console.log(products.value);
 
-  // state management
-  // using useState
-  const counter = useCounter();
+  // useAsyncData
+  const { data: productCount, pending } = await useAsyncData("products", () =>
+    $fetch("/api/asyncProducts")
+  );
 
-  // using Pinia
-  import { useCounterStore } from "~/stores/myStore";
-  const store = useCounterStore();
+  console.log(productCount.value);
 
-  console.log(store);
-
-  // Server
-  const response = await $fetch("/api/hello");
-
-  console.log(response);
+  const refresh = () => refreshNuxtData("products");
 </script>
 
 <template>
-  <div class="container py-3 mx-auto Main">
-    <h1 class="text-teal-500">Index Page</h1>
-  </div>
-
-  <!-- State Management -->
   <div>
-    <!-- 1. Using useState -->
-    <div>
-      <div>
-        Counter: {{ counter }}
-        <button @click="counter++">+</button>
-        <button @click="counter--">-</button>
-      </div>
+    <!-- {{ pending ? "Loading" : products }} -->
+    {{ pending ? "Loading" : productCount }}
 
-      <Counter />
-    </div>
-
-    <div>
-      <!-- 2. Using Pinia -->
-    </div>
+    <button @click="refresh">Refresh</button>
   </div>
 </template>
 
