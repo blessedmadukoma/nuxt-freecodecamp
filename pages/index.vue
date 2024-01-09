@@ -1,55 +1,28 @@
 <script lang="ts" setup>
-  // useHead({
-  //   title: "Index page",
-  //   meta: [
-  //     {
-  //       name: "description",
-  //       content: "Index page",
-  //     },
-  //   ],
-  //   bodyAttrs: {
-  //     class: "test",
-  //   },
-  //   script: [
-  //     {
-  //       children: "console.log(`Hello world from index page`)",
-  //     },
-  //   ],
-  // });
+  // useFetch
+  // const { data: products } = await useFetch("/api/products");
 
-  const dynamicTitle = "title";
+  // useLazyFetch
+  // const { data: products, pending } = await useLazyFetch("/api/products");
 
-  definePageMeta({
-    middleware: "profile",
-  });
+  // console.log(products.value);
 
-  const { sayHello } = useUtils();
+  // useAsyncData
+  const { data: productCount, pending } = await useAsyncData("products", () =>
+    $fetch("/api/asyncProducts")
+  );
 
-  sayHello("blessed");
+  console.log(productCount.value);
 
-  // state management
-  // using useState
-  const counter = useCounter();
-
-  // using Pinia
-  import { useCounterStore } from "~/stores/myStore";
-  const store = useCounterStore();
-
-  console.log(store);
-
-  // Server
-  const response = await $fetch("/api/hello");
-
-  console.log(response);
+  const refresh = () => refreshNuxtData("products");
 </script>
 
 <template>
-  <div class="container py-3 mx-auto Main">
-    <Head>
-      <Title>My title</Title>
-      <Meta name="description" :content="'This my dynamic ' + dynamicTitle" />
-    </Head>
-    <h1 class="text-teal-500">Index Page</h1>
+  <div>
+    <!-- {{ pending ? "Loading" : products }} -->
+    {{ pending ? "Loading" : productCount }}
+
+    <button @click="refresh">Refresh</button>
   </div>
 </template>
 

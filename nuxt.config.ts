@@ -1,6 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig({
+  hooks: {
+    ready: (ctx) => console.log(ctx),
+  },
   app: {
     head: {
       title: "My app",
@@ -26,4 +29,5 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  ssr: true,
 });
